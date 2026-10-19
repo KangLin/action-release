@@ -1,63 +1,63 @@
 name: 'action-codeberg-release'
-description: '在codeberg项目发布release(可以上传附件)'
+description: '在 gitee、codeberg 项目发布release(可以上传附件)'
 inputs:
-  codeberg_action:
+  release_action:
     description: '执行的操作类型: create_release, upload_asset, delete_release, delete_asset, update_asset'
     required: true
 
-  codeberg_owner:
-    description: 'codeberg 用户名, 项目URL中可获取'
+  release_owner:
+    description: '用户名, 项目URL中可获取'
     required: true
-  codeberg_repo:
-    description: 'codeberg 项目名, 项目URL中可获取'
+  release_repo:
+    description: '项目名, 项目URL中可获取'
     required: true
-  codeberg_token:
-    description: 'codeberg api token'
+  release_token:
+    description: 'api token'
     required: true
     
-  codeberg_tag_name:
-    description: 'codeberg Tag 名称, 提倡以v字母为前缀做为Release名称，例如v1.0或者v2.3.4'
+  release_tag_name:
+    description: 'Tag 名称, 提倡以v字母为前缀做为Release名称，例如v1.0或者v2.3.4'
     required: false
-  codeberg_release_name:
-    description: 'codeberg release 名称'
+  release_release_name:
+    description: 'release 名称'
     required: false
-  codeberg_release_body:
-    description: 'codeberg release 描述'
+  release_release_body:
+    description: 'release 描述'
     required: false
-  codeberg_target_commitish:
-    description: 'codeberg 分支名称或者commit SHA'
+  release_target_commitish:
+    description: '分支名称或者commit SHA'
     required: false
 
-  codeberg_files:
+  release_files:
     description: '上传的附件列表(多个文件)'
     required: false
     
-  codeberg_file_name:
+  release_file_name:
     description: '上传的附件名称(单个文件)'
     required: false
-  codeberg_file_path:
+  release_file_path:
     description: '上传的附件的本地路径(单个文件)'
     required: false
     
-  codeberg_release_id:
-    description: '指定的release ID (upload_asset操作时可选，优先级高于tag_name)'
+  release_release_id:
+    description: '指定的 release ID (upload_asset操作时可选，优先级高于tag_name)'
     required: false
     
-  codeberg_upload_retry_times:
+  release_upload_retry_times:
     description: '上传附件失败后的尝试次数'
     required: false
 
-  codeberg_delete_asset:
+  release_delete_asset:
     description: '要删除的单个附件名称 (delete_asset操作时使用)'
     required: false
-  codeberg_delete_assets:
+  release_delete_assets:
     description: '要删除的多个附件名称，每行一个文件名 (delete_asset操作时使用)'
     required: false
     
-  codeberg_old_asset_name:
+  release_old_asset_name:
     description: '要更新的旧附件名称 (update_asset操作时使用)'
     required: false
-  codeberg_new_file_path:
+  release_new_file_path:
     description: '新附件的本地路径 (update_asset操作时使用)'
     required: false
     
@@ -75,26 +75,26 @@ runs:
       id: release
       shell: bash
       env:
-        codeberg_action: ${{ inputs.codeberg_action }}
-        codeberg_owner: ${{ inputs.codeberg_owner }}
-        codeberg_repo: ${{ inputs.codeberg_repo }}
-        codeberg_token: ${{ inputs.codeberg_token }}
-        codeberg_tag_name: ${{ inputs.codeberg_tag_name }}
-        codeberg_release_name: ${{ inputs.codeberg_release_name }}
-        codeberg_release_body: ${{ inputs.codeberg_release_body }}
-        codeberg_target_commitish: ${{ inputs.codeberg_target_commitish }}
-        codeberg_files: ${{ inputs.codeberg_files }}
-        codeberg_file_name: ${{ inputs.codeberg_file_name }}
-        codeberg_file_path: ${{ inputs.codeberg_file_path }}
-        codeberg_release_id: ${{ inputs.codeberg_release_id }}
-        codeberg_upload_retry_times: ${{ inputs.codeberg_upload_retry_times }}
-        codeberg_delete_asset: ${{ inputs.codeberg_delete_asset }}
-        codeberg_delete_assets: ${{ inputs.codeberg_delete_assets }}
-        codeberg_old_asset_name: ${{ inputs.codeberg_old_asset_name }}
-        codeberg_new_file_path: ${{ inputs.codeberg_new_file_path }}
+        release_action: ${{ inputs.release_action }}
+        release_owner: ${{ inputs.release_owner }}
+        release_repo: ${{ inputs.release_repo }}
+        release_token: ${{ inputs.release_token }}
+        release_tag_name: ${{ inputs.release_tag_name }}
+        release_release_name: ${{ inputs.release_release_name }}
+        release_release_body: ${{ inputs.release_release_body }}
+        release_target_commitish: ${{ inputs.release_target_commitish }}
+        release_files: ${{ inputs.release_files }}
+        release_file_name: ${{ inputs.release_file_name }}
+        release_file_path: ${{ inputs.release_file_path }}
+        release_release_id: ${{ inputs.release_release_id }}
+        release_upload_retry_times: ${{ inputs.release_upload_retry_times }}
+        release_delete_asset: ${{ inputs.release_delete_asset }}
+        release_delete_assets: ${{ inputs.release_delete_assets }}
+        release_old_asset_name: ${{ inputs.release_old_asset_name }}
+        release_new_file_path: ${{ inputs.release_new_file_path }}
       run: |
         pip install -r "${{ github.action_path }}/requirements.txt"
-        python "${{ github.action_path }}/codeberg_release.py"
+        python "${{ github.action_path }}/release_release.py"
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
 branding:
