@@ -49,7 +49,7 @@ def no_catch(exception, exclude_exceptions):
             return True
     return False
 
-class codeberg:
+class Codeberg:
     def __init__(self, owner, token):
         self.owner = owner
         self.token = token

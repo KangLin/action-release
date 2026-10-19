@@ -1,3 +1,5 @@
 .venv
 __*
 .idea/
+.vs/
+
